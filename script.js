@@ -156,7 +156,11 @@ saveFinish.addEventListener("click", async ()=>{
 
                 scarpKg:Number(scarpKg.value),
 
-                lump:Number(lump.value)
+                lump:Number(lump.value),
+
+                powderRate: powderRate.value,
+
+                scarpRate: scarpRate.value
 
             })
 
