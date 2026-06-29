@@ -278,7 +278,7 @@ function formatDate(dateString){
     });
 
 }
-async function updateStatus(status){
+async function updateStatus(status,remark){
 
     try{
 
@@ -288,11 +288,13 @@ async function updateStatus(status){
 
             body:JSON.stringify({
 
-                action:"updateStatus",
+              action:"updateStatus",
 
-                workNo:document.getElementById("workNo").innerText,
+              workNo:document.getElementById("workNo").innerText,
 
-                status:status
+              status:status,
+
+              remark:remark
 
             })
 
@@ -319,5 +321,18 @@ async function updateStatus(status){
         alert("อัปเดตสถานะไม่สำเร็จ");
 
     }
+
+}
+saveStatus.onclick = ()=>{
+
+    updateStatus(
+
+        selectedStatus,
+
+        statusRemark.value
+
+    );
+
+    statusPopup.classList.remove("show");
 
 }
