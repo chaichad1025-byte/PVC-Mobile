@@ -18,12 +18,48 @@ buttons.forEach(button=>{
 
         const status = button.dataset.status;
 
-        updateStatus(status);
+          selectedStatus = status;
+
+          // ถ้าเป็นกำลังดำเนินงาน ให้ส่งทันที
+          if(status==="กำลังดำเนินงาน"){
+
+         updateStatus(status,"");
+         return;
+
+        }
+
+// ถ้าเป็น Finish ใช้ Popup Finish
+if(button.classList.contains("finish")){
+
+    popup.classList.add("show");
+    return;
+
+}
+
+// สถานะอื่นเปิด Popup หมายเหตุ
+popupStatus.value = status;
+
+statusRemark.value = "";
+
+statusPopup.classList.add("show");
 
     });
 
 });
 const popup = document.getElementById("finishPopup");
+const statusPopup = document.getElementById("statusPopup");
+
+const popupStatus = document.getElementById("popupStatus");
+
+const statusRemark = document.getElementById("statusRemark");
+
+const saveStatus = document.getElementById("saveStatus");
+
+const cancelStatusPopup = document.getElementById("cancelStatusPopup");
+
+const closeStatusPopup = document.getElementById("closeStatusPopup");
+
+let selectedStatus = "";
 const saveFinish = document.getElementById("saveFinish");
 
 const cancelPopup = document.getElementById("cancelPopup");
@@ -47,6 +83,17 @@ const closePopup=document.getElementById("closePopup");
 closePopup.onclick=()=>{
 
 popup.classList.remove("show");
+
+}
+closeStatusPopup.onclick = () => {
+
+    statusPopup.classList.remove("show");
+
+}
+
+cancelStatusPopup.onclick = () => {
+
+    statusPopup.classList.remove("show");
 
 }
 
