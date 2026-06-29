@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ZENITEX Production Control</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<header>
+
+<div class="header-left">
+
+<img src="images/logo.png" class="logo">
+
+<div>
+
+<h1>ZENITEX</h1>
+
+<p>Production Control</p>
+
+</div>
+
+</div>
+
+</header>
+
+<main class="container">
+
+<div class="card">
+
+<h2>📋 Current Production</h2>
+<div class="current-status">
+
+    <span class="status-dot"></span>
+
+    <span id="currentStatusText">
+        กำลังดำเนินงาน
+    </span>
+
+</div>
+
+<div class="section-title">📄 ข้อมูลออเดอร์</div>
+
+<div class="current-grid">
+
+<div class="item">
+<label>Order No</label>
+<span id="orderNo">-</span>
+</div>
+
+<div class="item">
+<label>Work No</label>
+<span id="workNo">-</span>
+</div>
+
+<div class="item">
+<label>Customer</label>
+<span id="customer">-</span>
+</div>
+
+<div class="item">
+<label>Worker</label>
+<span id="worker">-</span>
+</div>
+
+</div>
+
+<div class="section-title">📦 รายละเอียดสินค้า</div>
+
+<div class="current-grid">
+
+<div class="item">
+<label>ประเภทชีท</label>
+<span id="sheetType">-</span>
+</div>
+
+<div class="item">
+<label>เบอร์ผ้า</label>
+<span id="fabricNo">-</span>
+</div>
+
+<div class="item">
+<label>สี</label>
+<span id="color">-</span>
+</div>
+
+<div class="item">
+<label>ความหนา</label>
+<span id="thickness">-</span>
+</div>
+
+<div class="item">
+<label>หน้ากว้าง</label>
+<span id="width">-</span>
+</div>
+
+<div class="item">
+<label>น้ำหนัก</label>
+<span id="weight">-</span>
+</div>
+
+</div>
+
+<div class="section-title">⚙️ การผลิต</div>
+
+<div class="current-grid">
+
+<div class="item">
+<label>ความยาว</label>
+<span id="length">-</span>
+</div>
+
+<div class="item">
+<label>ความเร็ว</label>
+<span id="speed">-</span>
+</div>
+
+<div class="item">
+<label>Forecast</label>
+<span id="forecast">-</span>
+</div>
+
+<div class="item">
+<label>เริ่มผลิต</label>
+<span id="startDate">-</span>
+</div>
+
+<div class="item">
+<label>กำหนดเสร็จ</label>
+<span id="dueDate">-</span>
+</div>
+
+<div class="item">
+<label>Status</label>
+ <span id="status">-</span>
+ </div>
+
+</div>
+</div>
+
+<div class="card">
+
+<h2>🔄 Update Production Status</h2>
+
+<div class="status-grid">
+
+<button class="status-btn running active" data-status="กำลังดำเนินงาน">
+🟢 กำลังดำเนินงาน
+</button>
+
+<button class="status-btn delay" data-status="ล่าช้ากว่ากำหนด">
+🟠 ล่าช้ากว่ากำหนด
+</button>
+
+<button class="status-btn power" data-status="ไฟดับ">
+⚡ ไฟดับ
+</button>
+
+<button class="status-btn color" data-status="เหตุขัดข้องที่สี">
+🎨 เหตุขัดข้องที่สี
+</button>
+
+<button class="status-btn chemical" data-status="เหตุขัดข้องที่สารเคมี">
+🧪 เหตุขัดข้องที่สารเคมี
+</button>
+
+<button class="status-btn clear" data-status="กำลังเคลียร์เครื่อง">
+🛠 กำลังเคลียร์เครื่อง
+</button>
+
+<button class="status-btn finish finish-full">
+✅ เสร็จสิ้น
+</button>
+</div>
+
+<div class="remark-box">
+
+<label>หมายเหตุ</label>
+
+<textarea placeholder="กรอกหมายเหตุ (ถ้ามี)"></textarea>
+
+</div>
+
+<button class="save-btn">
+
+บันทึกการเปลี่ยนสถานะ
+
+</button>
+
+</div>
+
+</main>
+<div id="finishPopup" class="popup">
+
+    <div class="popup-box">
+
+        <div class="popup-header">
+
+<h2>Finish Production</h2>
+
+<button id="closePopup">&times;</button>
+
+</div>
+
+        <div class="popup-grid">
+
+            <div class="form-group">
+                <label>ORDER (KG)</label>
+                <input type="number" id="orderKg">
+            </div>
+
+            <div class="form-group">
+                <label>ผง (KG)</label>
+                <input type="number" id="powderKg">
+            </div>
+
+            <div class="form-group">
+                <label>SCARP (KG)</label>
+                <input type="number" id="scarpKg">
+            </div>
+
+            <div class="form-group">
+                <label>ก้อน / ORDER</label>
+                <input type="number" id="lump">
+            </div>
+            <div class="form-group">
+    <label>อัตราส่วนผง</label>
+    <input type="text" id="powderRate" readonly>
+</div>
+
+<div class="form-group">
+    <label>อัตราส่วน SCARP</label>
+    <input type="text" id="scarpRate" readonly>
+</div>
+
+        </div>
+
+        <div class="popup-footer">
+
+            <button id="cancelPopup">
+                ยกเลิก
+            </button>
+
+            <button id="saveFinish">
+                บันทึก
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
