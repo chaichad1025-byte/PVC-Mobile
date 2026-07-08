@@ -137,7 +137,12 @@ saveFinish.addEventListener("click", async ()=>{
         return;
 
     }
+         // กันกดซ้ำ
+    if(saveFinish.disabled) return;
 
+    // ล็อกปุ่มทันที
+    saveFinish.disabled = true;
+    saveFinish.textContent = "⏳ กำลังบันทึก...";
     try{
 
         const res = await fetch(API_URL,{
@@ -170,23 +175,28 @@ saveFinish.addEventListener("click", async ()=>{
 
         if(result.success){
 
-            popup.classList.remove("show");
+    await loadRunningOrder();
 
-            alert("บันทึกสำเร็จ");
+    popup.classList.remove("show");
 
-            loadRunningOrder();
+    alert("บันทึกสำเร็จ");
 
-        }else{
+}else{
 
-            alert(result.message);
+    alert(result.message);
 
-        }
+}
+}catch(err){
 
-    }catch(err){
+    alert(err);
 
-        alert(err);
+}finally{
 
-    }
+    // เปิดปุ่มกลับ
+    saveFinish.disabled = false;
+    saveFinish.textContent = "บันทึก";
+
+}
 
 });
 popup.addEventListener("click",(e)=>{
@@ -311,7 +321,7 @@ async function updateStatus(status,remark){
             document.getElementById("currentStatusText").innerText = status;
             document.getElementById("status").innerText = status;
 
-            loadRunningOrder();
+            await loadRunningOrder();
 
         }else{
 
@@ -327,16 +337,35 @@ async function updateStatus(status,remark){
     }
 
 }
-saveStatus.onclick = ()=>{
+saveStatus.onclick = async ()=>{
 
-    updateStatus(
+    // ถ้ากำลังบันทึกอยู่ ห้ามกดซ้ำ
+    if(saveStatus.disabled) return;
 
-        selectedStatus,
+    // ล็อกปุ่มทันที
+    saveStatus.disabled = true;
+    saveStatus.textContent = "⏳ กำลังบันทึก...";
 
-        statusRemark.value
+    try{
 
-    );
+        await updateStatus(
+            selectedStatus,
+            statusRemark.value
+        );
 
-    statusPopup.classList.remove("show");
+        // บันทึกเสร็จค่อยปิด Popup
+        statusPopup.classList.remove("show");
+
+    }catch(err){
+
+        console.error(err);
+
+    }finally{
+
+        // คืนค่าปุ่ม
+        saveStatus.disabled = false;
+        saveStatus.textContent = "บันทึก";
+
+    }
 
 }
