@@ -565,21 +565,6 @@ transform:scale(1);
     color:#0f172a;
 
 }
-.length-input-group{
-    display:flex;
-    width:100%;
-    gap:8px;
-}
-
-.length-input-group input{
-    flex:1;
-    min-width:0;
-}
-
-.length-input-group select{
-    width:80px;      /* เดิม 110 */
-    flex-shrink:0;
-}
 .form-group{
     display:flex;
     flex-direction:column;
@@ -604,37 +589,43 @@ transform:scale(1);
     font-family:"Sarabun",sans-serif;
     font-size:14px;
 }
-
 .length-input-group{
     display:flex;
-    gap:8px;
     width:100%;
+    gap:8px;
 }
 
 .length-input-group input{
-    flex:1;
-    width:auto;
+    flex:1 1 auto;
+    min-width:0;
+    width:0;
 }
 
 .length-input-group select{
-    width:110px;
-    flex:none;
+    flex:0 0 80px;
+    width:80px;
+    padding-left:6px;
+    padding-right:6px;
 }
+
 @media (max-width:768px){
 
-    .length-group{
-        display:flex;
-        gap:8px;
+    .length-input-group{
+        gap:6px;
     }
 
-    .length-group input{
-        flex:1;
+    .length-input-group input{
+        flex:1 1 auto;
         min-width:0;
+        width:0;
     }
 
-    .length-group select{
-        width:80px;
-        flex-shrink:0;
+    .length-input-group select{
+        flex:0 0 65px;
+        width:65px;
+        padding-left:4px;
+        padding-right:4px;
     }
 
 }
+
