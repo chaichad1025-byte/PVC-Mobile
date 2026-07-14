@@ -567,8 +567,8 @@ transform:scale(1);
 }
 .length-input-group{
     display:flex;
-    gap:8px;
     width:100%;
+    gap:8px;
 }
 
 .length-input-group input{
@@ -577,14 +577,8 @@ transform:scale(1);
 }
 
 .length-input-group select{
-    width:90px;
-    padding:10px;
-    border:1px solid #d1d5db;
-    border-radius:8px;
-    font-family:"Sarabun",sans-serif;
-    font-size:14px;
-    background:#fff;
-    cursor:pointer;
+    width:80px;      /* เดิม 110 */
+    flex-shrink:0;
 }
 .form-group{
     display:flex;
@@ -625,4 +619,22 @@ transform:scale(1);
 .length-input-group select{
     width:110px;
     flex:none;
+}
+@media (max-width:768px){
+
+    .length-group{
+        display:flex;
+        gap:8px;
+    }
+
+    .length-group input{
+        flex:1;
+        min-width:0;
+    }
+
+    .length-group select{
+        width:80px;
+        flex-shrink:0;
+    }
+
 }
