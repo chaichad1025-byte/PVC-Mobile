@@ -215,10 +215,30 @@
             </div>
 
             <div class="form-group">
-                <label>ก้อน / ORDER</label>
-                <input type="number" id="lump">
-            </div>
-            <div class="form-group">
+    <label>ก้อน / ORDER</label>
+    <input type="number" id="lump">
+</div>
+
+<div class="form-group">
+    <label>ความยาวหลังผลิต</label>
+
+    <div class="length-input-group">
+
+        <input
+            type="number"
+            id="realLength"
+            placeholder="กรอกความยาว">
+
+        <select id="realLengthUnit">
+            <option value="หลา">หลา</option>
+            <option value="เมตร">เมตร</option>
+        </select>
+
+    </div>
+
+</div>
+
+<div class="form-group">
     <label>อัตราส่วนผง</label>
     <input type="text" id="powderRate" readonly>
 </div>
