@@ -78,6 +78,8 @@ const scarpKg = document.getElementById("scarpKg");
 const powderRate = document.getElementById("powderRate");
 const scarpRate = document.getElementById("scarpRate");
 const lump = document.getElementById("lump");
+const realLength = document.getElementById("realLength");
+const realLengthUnit = document.getElementById("realLengthUnit");
 const closePopup=document.getElementById("closePopup");
 
 closePopup.onclick=()=>{
@@ -127,14 +129,16 @@ scarpKg.addEventListener("input",calculateRate);
 saveFinish.addEventListener("click", async ()=>{
 
     if(
-        orderKg.value==="" ||
-        powderKg.value==="" ||
-        scarpKg.value==="" ||
-        lump.value===""
+    orderKg.value==="" ||
+    powderKg.value==="" ||
+    scarpKg.value==="" ||
+    lump.value==="" ||
+    realLength.value==="" ||
+    realLengthUnit.value===""
     ){
 
-        alert("กรุณากรอกข้อมูลให้ครบ");
-        return;
+    alert("กรุณากรอกข้อมูลให้ครบ");
+    return;
 
     }
          // กันกดซ้ำ
@@ -162,6 +166,10 @@ saveFinish.addEventListener("click", async ()=>{
                 scarpKg:Number(scarpKg.value),
 
                 lump:Number(lump.value),
+
+                realLength:Number(realLength.value),
+                
+                realLengthUnit:realLengthUnit.value,
 
                 powderRate: powderRate.value,
 
