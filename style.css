@@ -569,3 +569,24 @@ transform:scale(1);
     color:#0f172a;
 
 }
+.length-input-group{
+    display:flex;
+    gap:8px;
+    width:100%;
+}
+
+.length-input-group input{
+    flex:1;
+    min-width:0;
+}
+
+.length-input-group select{
+    width:90px;
+    padding:10px;
+    border:1px solid #d1d5db;
+    border-radius:8px;
+    font-family:"Sarabun",sans-serif;
+    font-size:14px;
+    background:#fff;
+    cursor:pointer;
+}
