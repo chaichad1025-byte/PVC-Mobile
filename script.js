@@ -128,25 +128,30 @@ powderKg.addEventListener("input",calculateRate);
 scarpKg.addEventListener("input",calculateRate);
 saveFinish.addEventListener("click", async ()=>{
 
+    const orderGradeB =
+        Number(document.getElementById("finishOrderGradeB").value) || 0;
+
     if(
-    orderKg.value==="" ||
-    powderKg.value==="" ||
-    scarpKg.value==="" ||
-    lump.value==="" ||
-    realLength.value==="" ||
-    realLengthUnit.value===""
+        orderKg.value==="" ||
+        powderKg.value==="" ||
+        scarpKg.value==="" ||
+        lump.value==="" ||
+        realLength.value==="" ||
+        realLengthUnit.value===""
     ){
 
-    alert("กรุณากรอกข้อมูลให้ครบ");
-    return;
+        alert("กรุณากรอกข้อมูลให้ครบ");
+        return;
 
     }
-         // กันกดซ้ำ
+
+    // กันกดซ้ำ
     if(saveFinish.disabled) return;
 
     // ล็อกปุ่มทันที
     saveFinish.disabled = true;
     saveFinish.textContent = "⏳ กำลังบันทึก...";
+
     try{
 
         const res = await fetch(API_URL,{
@@ -161,6 +166,8 @@ saveFinish.addEventListener("click", async ()=>{
 
                 orderKg:Number(orderKg.value),
 
+                orderGradeB,
+
                 powderKg:Number(powderKg.value),
 
                 scarpKg:Number(scarpKg.value),
@@ -168,7 +175,7 @@ saveFinish.addEventListener("click", async ()=>{
                 lump:Number(lump.value),
 
                 realLength:Number(realLength.value),
-                
+
                 realLengthUnit:realLengthUnit.value,
 
                 powderRate: powderRate.value,
@@ -183,28 +190,29 @@ saveFinish.addEventListener("click", async ()=>{
 
         if(result.success){
 
-    await loadRunningOrder();
+            await loadRunningOrder();
 
-    popup.classList.remove("show");
+            popup.classList.remove("show");
 
-    alert("บันทึกสำเร็จ");
+            alert("บันทึกสำเร็จ");
 
-}else{
+        }else{
 
-    alert(result.message);
+            alert(result.message);
 
-}
-}catch(err){
+        }
 
-    alert(err);
+    }catch(err){
 
-}finally{
+        alert(err);
 
-    // เปิดปุ่มกลับ
-    saveFinish.disabled = false;
-    saveFinish.textContent = "บันทึก";
+    }finally{
 
-}
+        // เปิดปุ่มกลับ
+        saveFinish.disabled = false;
+        saveFinish.textContent = "บันทึก";
+
+    }
 
 });
 popup.addEventListener("click",(e)=>{
