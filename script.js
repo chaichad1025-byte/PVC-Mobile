@@ -127,7 +127,8 @@ powderKg.addEventListener("input",calculateRate);
 
 scarpKg.addEventListener("input",calculateRate);
 saveFinish.addEventListener("click", async ()=>{
-
+    const orderGradeA =
+    Number(document.getElementById("finishOrderGradeA").value) || 0;
     const orderGradeB =
         Number(document.getElementById("finishOrderGradeB").value) || 0;
 
@@ -165,6 +166,8 @@ saveFinish.addEventListener("click", async ()=>{
                 workNo:document.getElementById("workNo").innerText,
 
                 orderKg:Number(orderKg.value),
+
+                orderGradeA,
 
                 orderGradeB,
 
